@@ -1,0 +1,20 @@
+Modules: loading gcc/4.9.4
+-------------------------------------------------------------------
+/shared/apps/modules/gcc/4.9.4:
+
+module-whatis	 GNU Compiler Collection (GCC) 4.9.4 (http://gcc.gnu.org) 
+conflict	 gcc 
+prepend-path	 PATH /shared/apps/gcc/4.9.4/bin 
+prepend-path	 LD_LIBRARY_PATH /shared/apps/gcc/gmp/6.1.0/lib:/shared/apps/gcc/mpfr/3.1.4-p1/lib:/shared/apps/gcc/mpc/1.0.3/lib:/shared/apps/gcc/isl/0.14.1/lib:/shared/apps/gcc/cloog/0.18.4/lib 
+prepend-path	 LD_LIBRARY_PATH /shared/apps/gcc/4.9.4/lib64 
+prepend-path	 LIBRARY_PATH /shared/apps/gcc/4.9.4/lib64 
+prepend-path	 MANPATH /shared/apps/gcc/4.9.4/share/man 
+prepend-path	 INFOPATH /shared/apps/gcc/4.9.4/share/info 
+-------------------------------------------------------------------
+
+test.c: In function 'main':
+test.c:3:5: error: 'for' loop initial declarations are only allowed in C99 or C11 mode
+     for (int i = 0; i < 100; ++i) {
+     ^
+test.c:3:5: note: use option -std=c99, -std=gnu99, -std=c11 or -std=gnu11 to compile your code
+/opt/slurm/current/var/spool/job5310236/slurm_script: line 34: ./test: No such file or directory

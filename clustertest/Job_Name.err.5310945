@@ -1,0 +1,3 @@
+Modules: loading openmpi/gcc/2.1.2 
+	Cuda 9.0 support enabled, beware when using older cuda versions in conjunction with OpenMPI.
+	Warning: in order to use openmpi/gcc/2.1.2 please load 'gcc' module
