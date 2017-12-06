@@ -3,6 +3,7 @@
 #include <malloc.h>
 #include <time.h>
 #include <stdlib.h>
+#include <omp.h>
 
 
 
@@ -12,9 +13,9 @@ int main(int argc, char **argv)
     if (argc<3){
         return -1;
     }
-    // Starting timer
-    time_t start_time;
-    time(&start_time);
+    
+    double needed_time = omp_get_wtime(); // todo milliseconds would be nice
+  
 
     long long Anzahl = atoll(argv[1]);
     int Chunk = atoi(argv[2]);
@@ -39,7 +40,7 @@ int main(int argc, char **argv)
             printf("%lli \n", i);
         }
     }
-    double needed_time = difftime(time(NULL), start_time); // todo milliseconds would be nice
+    needed_time = omp_get_wtime() - needed_time; // todo milliseconds would be nice
     printf("Finished after %f seconds!\n", needed_time);
     return 0;
 }
