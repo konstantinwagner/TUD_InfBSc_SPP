@@ -1,18 +1,16 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
-#include <time.h>
+#include <omp.h>
 
+// Pre-declare used functions
 bool check_sorted_sequence(int *array, int length);
-
 void merge_sort(int *array, int *help, unsigned length);
-
 void merge_sort_sort(int *array, int *help, unsigned left_array_length, unsigned right_array_length);
-
 
 int main(int argc, char **argv) {
     // Check if argument counter matches conditions
-    if (argc != 2) {
+    if (argc < 2) {
         printf("[ERROR] Got %i instead of 2 argument (format: ./main <ARRAY_LENGTH>)\n", argc);
         return -1;
     }
@@ -26,28 +24,29 @@ int main(int argc, char **argv) {
 
     printf("Running sort algorithm with %i random values...\n", array_length);
 
-    // Starting timer
-    time_t start_time;
-    time(&start_time);
-
-    // Allocate main/helper arrays with type 'int' and given length
+    // Allocate main array with type 'int' and given length
     int *array = malloc(sizeof(int) * array_length);
-    int *help = malloc(sizeof(int) * array_length);
 
     // Set time seed for rand()
-    srand((unsigned) time(NULL));
+    srand(omp_get_wtime());
 
     // Set random number to every array element
     for (int i = 0; i < array_length; i++) {
-        array[i] = rand() % 1000;
+        array[i] = rand();
     }
+
+    // Starting timer (includes: helper allocation & algorithm run)
+    double needed_time = omp_get_wtime();
+
+    // Allocate helper here to be included in the measured part
+    int *help = malloc(sizeof(int) * array_length);
 
     // Execute merge-sort algorithm
     merge_sort(array, help, array_length);
 
     // Determinate if sorting was successful. Give user feedback afterwards.
     bool success = check_sorted_sequence(array, array_length);
-    double needed_time = difftime(time(NULL), start_time); // todo milliseconds would be nice
+    needed_time = omp_get_wtime() - needed_time;
     printf("Finished after %f seconds! Success: %s\n", needed_time, success ? "Yes" : "No");
 
     // Clean up
@@ -100,6 +99,7 @@ void merge_sort(int *array, int *help, unsigned length) {
     int *right_array_help = help + left_array_length;
 
     // Sort both parts using recursion
+    // Last task will be created when
     merge_sort(left_array, left_array_help, left_array_length);
     merge_sort(right_array, right_array_help, right_array_length);
 
@@ -152,5 +152,5 @@ void merge_sort_sort(int *array, int *help, unsigned left_array_length, unsigned
 
     // Copy helper array back to main array
     for (int i = 0; i < totalLength; i++)
-        left_array[i] = help[i];
+        array[i] = help[i];
 }
