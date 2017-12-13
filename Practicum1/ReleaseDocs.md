@@ -11,14 +11,14 @@
 
 ### Weiterführende Erklärungen
 #### Teilaufgabe C
-![Diagramm 1C](Practicum1/time_measurements/Task1-C.png)
+![Diagramm 1C](time_measurements/Task1-C.png)
 
 Zunächst einmal ist festzustellen, dass die gemessenen Laufzeiten unabhängig der Chunksizes bei threads=4 konsistent am kürzesten waren, was mit der Anzahl der genutzten CPU-Cores zusammenhängt. Bei 4 Threads/Cores wird im Optimalfall jedem Core ein Thread zugewiesen, sodass unnötiger Overhead bei etwaigem Threadwechsel entfällt. Die mit nur 2 Threads durchgeführten Berechnungen waren stets am langsamsten, da die hier nicht alle Cores parallel genutzt werden können. Die mit 8 bzw. 16 Threads erzielten Ergebnisse ordnen sich zwischen diesen beiden Extremen ein, was mit zuvor genanntem Overhead erklärbar ist.
 
 [TODO Erklärungen für chunk sizes]
 
 #### Teilaufgabe D
-![Diagramm 1D](Practicum1/time_measurements/Task1-D.png)
+![Diagramm 1D](time_measurements/Task1-D.png)
 
 [TODO Erklärungen für dynamic]
 
@@ -33,7 +33,7 @@ Zunächst einmal ist festzustellen, dass die gemessenen Laufzeiten unabhängig d
 
 ### Weiterführende Erklärungen
 #### Teilaufgabe C
-![Diagramm 2C](Practicum1/time_measurements/Task2-C.png)
+![Diagramm 2C](time_measurements/Task2-C.png)
 
 [TODO Erklärungen für final clause]
 
@@ -55,4 +55,4 @@ Zunächst einmal ist festzustellen, dass die gemessenen Laufzeiten unabhängig d
 
 ### Weiterführende Erklärungen
 #### Teilaufgabe C
-![Diagramm 5C](Practicum1/time_measurements/Task5-C.png)
+![Diagramm 5C](time_measurements/Task5-C.png)
