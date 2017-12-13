@@ -1,0 +1,9 @@
+Aufgabe 3 a)
+
+sum: Flow-Dependence in Zeile 11 bei result
+
+shift: Anti-Dependence in Zeile 20 bei a[i] bzw. a[i+offset]
+
+hash: Flow-Dependence bei hash in Zeile 36, 38, 42 und 44
+
+init: keine iterationsübergreifenden Datenabhängigkeiten
