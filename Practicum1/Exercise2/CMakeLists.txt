@@ -14,3 +14,6 @@ add_executable(Exc2-TaskA ${SOURCE_FILES_A})
 
 set(SOURCE_FILES_B TaskB/task_b.c)
 add_executable(Exc2-TaskB ${SOURCE_FILES_B})
+
+set(SOURCE_FILES_C TaskC/task_c.c)
+add_executable(Exc2-TaskC ${SOURCE_FILES_C})

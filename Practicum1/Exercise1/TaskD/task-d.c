@@ -6,7 +6,7 @@
 
 int main(int argc, char **argv) {
     // Check argument counter
-    if (argc < 3) {
+    if (argc != 3) {
         printf("Invalid argument counter (got %i instead of 3 args)\n", argc);
         printf("Required format: <command> <amount> <chunksize>\n");
         return -1;
@@ -16,7 +16,7 @@ int main(int argc, char **argv) {
     int amount = atoi(argv[1]);
     int chunk_size = atoi(argv[2]);
 
-    printf("Run algorithm with amount=%i numbers and chunk_size=%i\n", amount, chunk_size);
+    printf("Run algorithm with amount=%i numbers and dynamic chunk_size=%i\n", amount, chunk_size);
 
     // Start timer
     double needed_time = omp_get_wtime();
@@ -24,6 +24,7 @@ int main(int argc, char **argv) {
     bool *prim_array = malloc(sizeof(bool) * amount);
 
     // Init array with true
+    #pragma omp parallel for schedule(dynamic, chunk_size)
     for (int i = 0; i < amount; i++)
         prim_array[i] = 1;
 
@@ -35,6 +36,7 @@ int main(int argc, char **argv) {
     // Search for non-prim numbers and set them to 'false'
     double maxsearch = sqrt(amount);
     for (int i = 2; i < maxsearch; i++) {
+        #pragma omp parallel for schedule(dynamic, chunk_size)
         for (int j = i * i; j < amount; j += i)
             prim_array[j] = 0;
     }

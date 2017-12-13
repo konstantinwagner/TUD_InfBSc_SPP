@@ -6,7 +6,7 @@
 
 int main(int argc, char **argv) {
     // Check argument counter
-    if (argc < 3) {
+    if (argc != 3) {
         printf("Invalid argument counter (got %i instead of 3 args)\n", argc);
         printf("Required format: <command> <amount> <chunksize>\n");
         return -1;

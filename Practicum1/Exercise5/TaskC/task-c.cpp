@@ -9,7 +9,7 @@ int iterate(double x, double y, int maxIter);
 const int minNorm = 16;
 
 int main(int argc, char *argv[]) {
-    if (argc < 6) {
+    if (argc != 6) {
         printf("Invalid argument counter\n");
         printf("Required format: <command> <xmin> <xmax> <ymin> <ymax> <maxIter>\n");
         return -1;
@@ -31,6 +31,7 @@ int main(int argc, char *argv[]) {
     double yStep = (ymax - ymin) / width;
 
     field mdb;
+    #pragma omp parallel for collapse(2)
     for (int x = 0; x < width; x++) {
         for (int y = 0; y < height; y++) {
             mdb[x][y] = iterate(x * xStep + xmin, y * yStep + ymin, maxIter);
@@ -42,7 +43,7 @@ int main(int argc, char *argv[]) {
     printf("Finished after %f seconds!\n", needed_time);
 
     // Write result to bitmap file -> not included in time measurement
-    ppmwrite("out", mdb, maxIter);
+    ppmwrite("out.ppm", mdb, maxIter);
 
     return 0;
 }

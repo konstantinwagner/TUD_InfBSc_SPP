@@ -8,13 +8,18 @@ bool check_sorted_sequence(int *array, int length);
 void merge_sort(int *array, int *help, unsigned length);
 void merge_sort_sort(int *array, int *help, unsigned left_array_length, unsigned right_array_length);
 
+// Define barrier in global scope
+int PARALLEL_BARRIER;
+
 int main(int argc, char **argv) {
     // Check if argument counter matches conditions
-    if (argc != 2) {
-        printf("[ERROR] Got %i instead of 2 arguments\n", argc);
-	printf("Required format: <command> <array_length> \n");
+    if (argc != 3) {
+        printf("[ERROR] Got %i instead of 3 arguments\n", argc);
+        printf("Required format: <command> <array_length> <parallel_barrier>\n");
         return -1;
     }
+
+    PARALLEL_BARRIER = atoi(argv[2]);
 
     // Try to parse array length. Throw another error if an invalid length was returned.
     unsigned array_length = (unsigned) atoi(argv[1]);
@@ -43,6 +48,8 @@ int main(int argc, char **argv) {
     int *help = malloc(sizeof(int) * array_length);
 
     // Execute merge-sort algorithm
+    #pragma omp parallel
+    #pragma omp single
     merge_sort(array, help, array_length);
 
     // Determinate if sorting was successful. Give user feedback afterwards.
@@ -101,8 +108,11 @@ void merge_sort(int *array, int *help, unsigned length) {
 
     // Sort both parts using recursion
     // Last task will be created when
-    merge_sort(left_array, left_array_help, left_array_length);
-    merge_sort(right_array, right_array_help, right_array_length);
+    #pragma omp task final (length < PARALLEL_BARRIER)
+        merge_sort(left_array, left_array_help, left_array_length);
+    #pragma omp task final (length < PARALLEL_BARRIER)
+        merge_sort(right_array, right_array_help, right_array_length);
+    #pragma omp taskwait
 
     // Both parts are obviously sorted now
     // Merge both parts into one
