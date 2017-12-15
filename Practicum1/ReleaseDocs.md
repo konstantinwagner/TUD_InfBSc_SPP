@@ -52,7 +52,6 @@ init: keine iterationsübergreifenden Datenabhängigkeiten
 
 
 ## Aufgabe 4
-# Aufgabe 4
 
 ## a)
 
