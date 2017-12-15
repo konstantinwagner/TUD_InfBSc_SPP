@@ -15,13 +15,12 @@
 
 Zunächst einmal ist festzustellen, dass die gemessenen Laufzeiten unabhängig der Chunksizes bei threads=4 konsistent am kürzesten waren, was mit der Anzahl der genutzten CPU-Cores zusammenhängt. Bei 4 Threads/Cores wird im Optimalfall jedem Core ein Thread zugewiesen, sodass unnötiger Overhead bei etwaigem Threadwechsel entfällt. Die mit nur 2 Threads durchgeführten Berechnungen waren stets am langsamsten, da die hier nicht alle Cores parallel genutzt werden können. Die mit 8 bzw. 16 Threads erzielten Ergebnisse ordnen sich zwischen diesen beiden Extremen ein, was mit zuvor genanntem Overhead erklärbar ist.
 
-[TODO Erklärungen für chunk sizes]
+Im Bezug auf Chunksizes überwiegt bei sehr kleinen Größen (< 100) der Overhead, während bei sehr großen Chunks (> 10.000) nicht optimal parallelisiert werden kann. Damit liegt die optimale Ausführungszeit bei Chunksizes um 100-1.000. 
 
 #### Teilaufgabe D
 ![Diagramm 1D](time_measurements/Task1-D.png)
 
-[TODO Erklärungen für dynamic]
-
+Im Großen und Ganzen treffen die Erkenntnisse aus Aufgabe C auch auf Teilaufgabe D zu, mit dem Unterschied des drastisch angestiegenen Overheads. Gerade bei sehr kleinen Chunksizes (z.B. 1) wird das besonders deutlich, da die Ausführungszeit hier sowohl im Vergleich zu größeren Chunks als auch generell statischen Chunks aus dem Rahmen fällt. Darüber hinaus wird die Zeitspanne zwischen 4, 8 und 16 Threads minimiert, was wieder auf den größeren Anteil des Overheads an der Ausführungszeit zurückzuführen ist.
 
 ## Aufgabe 2
 ### Quellcodeverzeichnis
