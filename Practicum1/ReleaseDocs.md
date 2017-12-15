@@ -20,7 +20,7 @@ Im Bezug auf Chunksizes überwiegt bei sehr kleinen Größen (< 100) der Overhea
 #### Teilaufgabe D
 ![Diagramm 1D](time_measurements/Task1-D.png)
 
-Im Großen und Ganzen treffen die Erkenntnisse aus Aufgabe C auch auf Teilaufgabe D zu, mit dem Unterschied des drastisch angestiegenen Overheads. Gerade bei sehr kleinen Chunksizes (z.B. 1) wird das besonders deutlich, da die Ausführungszeit hier sowohl im Vergleich zu größeren Chunks als auch generell statischen Chunks aus dem Rahmen fällt. Darüber hinaus wird die Zeitspanne zwischen 4, 8 und 16 Threads minimiert, was wieder auf den größeren Anteil des Overheads an der Ausführungszeit zurückzuführen ist.
+Im Großen und Ganzen treffen die Erkenntnisse aus Aufgabe C auch auf Teilaufgabe D zu, mit dem Unterschied des drastisch angestiegenen Overheads. Gerade bei sehr kleinen Chunksizes (z.B. 1) wird das besonders deutlich, da die Ausführungszeit hier sowohl im Vergleich zu größeren Chunks als auch generell statischen Chunks negativ aus dem Rahmen fällt. Darüber hinaus wird die Zeitspanne zwischen 4, 8 und 16 Threads minimiert, was wieder auf den größeren Anteil des (eher statischen) Overheads an der Ausführungszeit zurückzuführen ist.
 
 ## Aufgabe 2
 ### Quellcodeverzeichnis
@@ -34,32 +34,35 @@ Im Großen und Ganzen treffen die Erkenntnisse aus Aufgabe C auch auf Teilaufgab
 #### Teilaufgabe C
 ![Diagramm 2C](time_measurements/Task2-C.png)
 
-[TODO Erklärungen für final clause]
+Das Laufzeitmessungen verlaufen für alle Parallel barriers - abgesehen von n=10 - nahezu identisch. Der Ausreißer bei n=10 ist unserer Auffassung nach mit dem extrem hohen Overhead zu erklären, der anfällt, wenn Tasks selbst für triviale Berechnungen erzeugt werden. Bei n >= 100 ist sinkt der Overhead aber so weit, dass es hier de facto keinen Unterschied mehr macht, mit welcher konkreten Schrankengröße die Berechnungen durchgeführt werden. Bei geringeren Werten fallen zwar mehr Tasks an, deren Ausführung sich aufgrund der begrenzten Threads jedoch nicht weiter beschleunigt. Zusammenfassend spielt die Schranke also - sofern nicht sehr klein - eine eher untergeordnete Rolle für die Laufzeit.
 
 
 ## Aufgabe 3
+### Quellcodeverzeichnis
+| Teilaufgabe | Verzeichnis        | Quellcode       | Compile command | Execute command                |
+|-------------|--------------------|-----------------|-----------------|--------------------------------|
+| B           | `Exercise3/`       | `task3_B.c`     | `make task3_B`  | `./task3_B`                    |
+| C           | `Exercise3/`       | `task3_C.c`     | `make task3_C`  | `./task3_C`                    |
 
-Aufgabe 3 a)
+### Weiterführende Erklärungen
+#### Teilaufgabe A
 
-sum: In zeile 11 gibt es bei result eine Flow-Dependence
-
-shift: Zeile 20 bei a[i] (bzw. a[i+offeset] eine Anti-Dependence
-
-hash: Bei hash in Zeile 36,38,42 und 44 eine Flow-Dependence
-
-init: keine iterationsübergreifenden Datenabhängigkeiten
-
+| Teil           | Erklärung                                                      |
+|----------------|----------------------------------------------------------------|
+| sum            | In Zeile 11 gibt es bei `result` eine Flow-Dependence          |
+| shift          | Zeile 20 bei `a[i]` (bzw. `a[i+offeset]`) eine Anti-Dependence |
+| hash           | Bei `hash` in Zeile 36,38,42 und 44 eine Flow-Dependence       |
+| init           | keine iterationsübergreifenden Datenabhängigkeiten             |
 
 ## Aufgabe 4
-
-## a)
+### Teilaufgabe A
 
 * count : shared
 * val : shared
 * g : shared
 * *g : private
 
-## b)
+### Teilaufgabe B
 
 * count : shared
 * val : private
@@ -69,7 +72,6 @@ init: keine iterationsübergreifenden Datenabhängigkeiten
 * i : shared
 * j : private
 * a : shared
-
 
 
 ## Aufgabe 5
