@@ -1,9 +1,9 @@
 Aufgabe 3 a)
 
-sum: Flow-Dependence in Zeile 11 bei result
+sum: In zeile 11 gibt es bei result eine Flow-Dependence
 
-shift: Anti-Dependence in Zeile 20 bei a[i] bzw. a[i+offset]
+shift: Zeile 20 bei a[i] (bzw. a[i+offeset] eine Anti-Dependence
 
-hash: Flow-Dependence bei hash in Zeile 36, 38, 42 und 44
+hash: Bei hash in Zeile 36,38,42 und 44 eine Flow-Dependence
 
-init: keine iterationsübergreifenden Datenabhängigkeiten
+init: keine iterationsÃ¼bergreifenden DatenabhÃ¤ngigkeiten
