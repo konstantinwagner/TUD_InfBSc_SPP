@@ -39,11 +39,39 @@ Zunächst einmal ist festzustellen, dass die gemessenen Laufzeiten unabhängig d
 
 
 ## Aufgabe 3
-[TODO TBC]
+
+Aufgabe 3 a)
+
+sum: In zeile 11 gibt es bei result eine Flow-Dependence
+
+shift: Zeile 20 bei a[i] (bzw. a[i+offeset] eine Anti-Dependence
+
+hash: Bei hash in Zeile 36,38,42 und 44 eine Flow-Dependence
+
+init: keine iterationsübergreifenden Datenabhängigkeiten
 
 
 ## Aufgabe 4
-[TODO TBC]
+# Aufgabe 4
+
+## a)
+
+* count : shared
+* val : shared
+* g : shared
+* *g : private
+
+## b)
+
+* count : shared
+* val : private
+* cnt : private
+* res : private
+* *res : private
+* i : shared
+* j : private
+* a : shared
+
 
 
 ## Aufgabe 5
