@@ -15,7 +15,7 @@ all: task1 task2
 	
 $(EXEC): $(OBJS)
 	$(CC) $(LDFLAGS) $(FLAGS) task1.o -o task1
-	$(CC) $(LDFLAGS) $(FLAGS) task2.o -o task2
+	$(CC) $(LDFLAGS) $(FLAGS) task2.o -o task2 -lm
 
 clean:
 	rm -f *.o *~ $(EXEC)
