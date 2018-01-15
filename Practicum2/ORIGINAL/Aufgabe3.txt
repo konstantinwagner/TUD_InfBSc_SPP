@@ -1,0 +1,10 @@
+Extra-P gibt folgende Komplexität aus:
+10.2592+3.42237e-05*(p^1.5)*log2^2(p)
+
+Vereinfachung:
+(p^1.5)*log2^2(p)
+
+Da log2^2(p) eine geringere Wertigkeit als (p^1.5) hat, 
+stellt (p^1.5) die obere Komplexitätsschranke dar
+Mit p=n ist demnach O(n^1.5) eine bessere Komlexität as O(n^3) 
+ Damit ist die einfache Matrixmultiplikation teurer als die hier implementierte Version.
