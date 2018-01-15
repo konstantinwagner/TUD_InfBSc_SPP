@@ -151,11 +151,10 @@ int main(int argc, char **argv) {
 
     /* Verify */
     if (myrank == MAIN_THREAD) {
-        if (verify_results(b_mat, n) == 1) {
-            printf("Korrekt ausgeführt!\n");
-        } else {
-            printf("Fehlerhaft ausgeführt!\n");
-        }
+        if (verify_results(b_mat, n) == 1)
+            printf("Execution successful!\n");
+        else
+            printf("Error during execution!\n");
 
         // Free a_mat here. Ignore warning (it's definitely initialized in main thread)
         free(a_mat);
