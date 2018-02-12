@@ -1,0 +1,19 @@
+#!/bin/bash
+#SBATCH -J CudaGraphics
+#SBATCH --mail-type=NONE
+#SBATCH -e /home/kurse/kurs00015/pw76kate/pc3/CudaGraphics.err
+#SBATCH -o /home/kurse/kurs00015/pw76kate/pc3/CudaGraphics.out
+#SBATCH --account=kurs00015
+#SBATCH --partition=kurs00015
+#SBATCH --reservation=kurs00015
+#SBATCH -n 1
+#SBATCH -c 4
+#SBATCH --mem-per-cpu=1750
+#SBATCH -t 00:03:00
+cd /home/kurse/kurs00015/pw76kate/pc3
+
+####################
+# YOUR STUFF BELOW #
+####################
+module load cuda
+./template images/example.bmp
